@@ -3066,3 +3066,86 @@ body:has(.about-page) {
 		background-position: top 0 left 19%;
 	}
 }
+
+/* =========================================
+   FOOTER SPACING FIX - DJOZ REACT
+========================================= */
+
+/* Home page footer - preserve original layout */
+.footer:not(.footer--normal) {
+    box-sizing: border-box;
+}
+
+/* About and other normal page footers */
+.footer.footer--normal {
+    position: relative;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding-top: 300px;
+    padding-bottom: 20px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    box-sizing: border-box;
+}
+
+/* Prevent extra space below the footer */
+.footer.footer--normal .footer__copyright__text {
+    margin-top: 20px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.footer.footer--normal .footer__copyright__text p {
+    margin-bottom: 0;
+}
+
+/* Remove unnecessary bottom spacing */
+html,
+body,
+#root {
+    margin-bottom: 0;
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 991px) {
+    .footer.footer--normal {
+        padding-top: 60px;
+        padding-bottom: 20px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+    .footer.footer--normal {
+        padding-top: 40px;
+        padding-bottom: 15px;
+    }
+
+    .footer.footer--normal .footer__address,
+    .footer.footer--normal .footer__social,
+    .footer.footer--normal .footer__newslatter {
+        margin-bottom: 25px;
+    }
+
+    .footer.footer--normal .footer__social::before,
+    .footer.footer--normal .footer__social::after {
+        display: none;
+    }
+}
+
+/* Small mobile */
+@media (max-width: 479px) {
+    .footer.footer--normal {
+        padding-top: 350px;
+        padding-bottom: 15px;
+    }
+
+    .footer.footer--normal .footer__copyright__text p {
+        font-size: 13px;
+        line-height: 23px;
+    }
+}

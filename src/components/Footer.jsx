@@ -6,7 +6,7 @@ function Footer() {
   
   return (
     <footer
-      className={`footer ${isAboutPage ? "footer--normal spad set-bg" : ""}`}
+      className={`footer ${isAboutPage ? "footer--normal" : ""}`}
       style={{
         backgroundImage: 'url("/assets/img/footer-bg.png")',
       }}
