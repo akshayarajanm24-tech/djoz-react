@@ -19,7 +19,12 @@ import AboutServices from "./pages/About/AboutServices";
 import Discography from "./pages/Discography/Discography";
 import Tour from "./pages/Tours/Tour";
 import Videos from "./pages/Videos/Videos";
-import Blog from "./pages/Blog/Blog";
+
+// import Blog from "./pages/Blog/Blog";
+import LatestPosts from "./pages/Blog/LatestPosts";
+import RecentPosts from "./pages/Blog/RecentPosts";
+import SubscribeNewsletter from "./pages/Blog/SubscribeNewsletter";
+
 import Contact from "./pages/Contact/Contact";
 
 function Home() {
@@ -44,6 +49,10 @@ function About() {
       <AboutServices />
     </>
   );
+}
+
+function Blog() {
+  return <LatestPosts />;
 }
 
 function App() {
