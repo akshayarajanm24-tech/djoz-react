@@ -1339,7 +1339,7 @@ ol {
   Skills
 -----------------------*/
 /* About page footer only */
-.footer.footer--normal {
+/* .footer.footer--normal {
     position: relative;
     margin-top: 0;
     padding-top: 350px;
@@ -1348,7 +1348,7 @@ ol {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-}
+} */
 
 @media (max-width: 767px) {
     .footer.footer--normal {

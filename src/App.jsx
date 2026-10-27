@@ -1,73 +1,105 @@
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { useLayoutEffect } from "react";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
-import Hero from "./pages/Home/Hero";
-import Events from "./pages/Home/Events";
-import HomeAbout from "./pages/Home/About";
-import Service from "./pages/Home/Service";
-import Track from "./pages/Home/Track";
-import Youtube from "./pages/Home/Youtube";
-import Countdown from "./pages/Home/Countdown";
+// Home page
+import Home from "./pages/Home";
 
-import Skills from "./pages/About/Skills";
-import AboutContent from "./pages/About/AboutContent";
-import AboutServices from "./pages/About/AboutServices";
+// About page
+import About from "./pages/About";
 
-import Discography from "./pages/Discography/Discography";
-import Tour from "./pages/Tours/Tour";
-import Videos from "./pages/Videos/Videos";
 
-// import Blog from "./pages/Blog/Blog";
-import LatestPosts from "./pages/Blog/LatestPosts";
-import RecentPosts from "./pages/Blog/RecentPosts";
-import SubscribeNewsletter from "./pages/Blog/SubscribeNewsletter";
+// Other pages
+import Discography from "./pages/Discography";
+import Tour from "./pages/Tours";
+import Videos from "./pages/Videos";
 
-import Contact from "./pages/Contact/Contact";
+// Blog page
+import Blog from "./pages/Blog";
 
-function Home() {
-  return (
-    <>
-      <Hero />
-      <Events />
-      <HomeAbout />
-      <Service />
-      <Track />
-      <Youtube />
-      <Countdown />
-    </>
-  );
+import Contact from "./pages/Contact";
+
+// Load scripts when the route changes
+function RouteScripts() {
+  const location = useLocation();
+
+  useLayoutEffect(() => {
+    let cancelled = false;
+    let script1;
+    let script2;
+
+    const cleanupNiceScroll = () => {
+      const $ = window.jQuery;
+
+      if (!$?.fn?.getNiceScroll) return;
+
+      $(".nice-scroll").each(function () {
+        const instance = $(this).getNiceScroll();
+
+        if (instance && instance.length) {
+          instance.remove();
+        }
+      });
+    };
+
+    script1 = document.createElement("script");
+    script1.src = "/js/main.js";
+
+    script1.onload = () => {
+      if (cancelled) return;
+
+      script2 = document.createElement("script");
+      script2.src = "/js/jplayerInit.js";
+      document.body.appendChild(script2);
+    };
+
+    document.body.appendChild(script1);
+
+    return () => {
+      cancelled = true;
+
+      cleanupNiceScroll();
+
+      script1?.remove();
+      script2?.remove();
+    };
+  }, [location.pathname]);
+
+  return null;
 }
 
-function About() {
-  return (
-    <>
-      <Skills />
-      <AboutContent />
-      <AboutServices />
-    </>
-  );
-}
 
-function Blog() {
-  return <LatestPosts />;
-}
 
+
+
+// Main App
 function App() {
   return (
     <BrowserRouter>
+      <RouteScripts />
+
       <Navbar />
 
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
+
           <Route path="/about" element={<About />} />
-          <Route path="/discography" element={<Discography />} />
+
+          <Route
+            path="/discography"
+            element={<Discography />}
+          />
+
           <Route path="/tours" element={<Tour />} />
+
           <Route path="/videos" element={<Videos />} />
+
           <Route path="/blog" element={<Blog />} />
+
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </main>

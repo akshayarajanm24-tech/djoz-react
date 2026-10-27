@@ -1,5 +1,5 @@
 
-import LatestPosts from "./LatestPosts";
+import LatestPosts from "../components/Blog/LatestPosts";
 
 function Blog() {
   return <LatestPosts />;
