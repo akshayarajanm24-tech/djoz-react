@@ -39,13 +39,18 @@ export default function Videos() {
     initVideos();
 
     return () => {
-      cancelled = true;
-      clearTimeout(timer);
+  cancelled = true;
+  clearTimeout(timer);
 
-      if ($slider?.length && $slider.hasClass("owl-loaded")) {
-        $slider.trigger("destroy.owl.carousel");
-      }
-    };
+  if ($slider?.length && $slider.hasClass("owl-loaded")) {
+    $slider.trigger("destroy.owl.carousel");
+    $slider.removeClass("owl-loaded");
+    $slider.find(".owl-stage-outer").children().unwrap();
+    $slider.find(".owl-stage").children().unwrap();
+    $slider.find(".owl-item").children().unwrap();
+    $slider.find(".owl-stage, .owl-item, .owl-dots, .owl-nav").remove();
+  }
+};
   }, []);
 
   useEffect(() => {
